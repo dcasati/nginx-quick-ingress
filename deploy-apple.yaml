@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apple-app
+  namespace: ingress-apple
+  labels:
+    app: apple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apple
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: apple
+    spec:
+      containers:
+      - image: hashicorp/http-echo
+        name: http-echo
+        args:
+          - "-text=apple"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: apple-service
+  namespace: ingress-apple
+spec:
+  selector:
+    app: apple
+  ports:
+    - port: 5678 # Default port for image
+

@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: coffee-app
+  namespace: ingress-coffee
+  labels:
+    app: coffee
+spec:
+  containers:
+    - name: coffee-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=it's coffee time!"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: coffee-service
+  namespace: ingress-coffee
+spec:
+  selector:
+    app: coffee
+  ports:
+    - port: 5678 # Default port for image

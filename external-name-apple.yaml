@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apple-service
+  name: apple-service
+spec:
+  externalName: apple-service.ingress-apple.svc.cluster.local
+  selector:
+    app: apple-service
+  type: ExternalName

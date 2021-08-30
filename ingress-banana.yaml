@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1 
+kind: Ingress
+metadata:
+  name: ingress-banana
+  namespace: ingress-banana
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: banana
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /banana
+          pathType: Prefix
+          backend:
+            service:
+              name: banana-service
+              port: 
+                number: 5678

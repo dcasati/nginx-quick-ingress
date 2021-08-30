@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-app
+  namespace: ingress-coffee
+  labels:
+    app: coffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - image: hashicorp/http-echo
+        name: http-echo
+        args:
+          - "-text=coffee"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: coffee-service
+  namespace: ingress-coffee
+spec:
+  selector:
+    app: coffee
+  ports:
+    - port: 5678 # Default port for image
+

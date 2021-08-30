@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1 
+kind: Ingress
+metadata:
+  name: ingress-coffee
+  namespace: ingress-coffee
+  annotations:
+    kubernetes.io/ingress.class: coffee
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /coffee
+          pathType: Prefix
+          backend:
+            service:
+              name: coffee-service
+              port: 
+                number: 5678

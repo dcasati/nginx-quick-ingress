@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: banana-service
+  name: banana-service
+spec:
+  externalName: banana-service.ingress-banana.svc.cluster.local
+  selector:
+    app: banana-service
+  type: ExternalName

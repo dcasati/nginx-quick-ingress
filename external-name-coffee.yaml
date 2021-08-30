@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: coffee-service
+  name: coffee-service
+spec:
+  externalName: coffee-service.ingress-coffee.svc.cluster.local
+  selector:
+    app: coffee-service
+  type: ExternalName
